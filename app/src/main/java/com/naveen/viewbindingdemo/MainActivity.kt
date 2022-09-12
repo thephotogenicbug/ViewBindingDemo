@@ -8,10 +8,24 @@ import android.widget.TextView
 import com.naveen.viewbindingdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+       // setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
+//        val messageView = findViewById<TextView>(R.id.tvMessage)
+//        val inputText = findViewById<EditText>(R.id.etName)
+//        val submitButton = findViewById<Button>(R.id.btnSubmit)
+        binding.apply{
+        btnSubmit.setOnClickListener {
+            val name = etName.text.toString()
+            tvMessage.text = "Hello $name"
+            etName.setText("")
+        }
+        }
     }
 
 }
